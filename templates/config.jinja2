@@ -1,0 +1,51 @@
+import os
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
+
+class BaseConfig(object):
+
+    SECRET_KEY = '{{ secret_key }}'
+    DATABASE_NAME = '{{ db_name }}'
+    UPLOAD_FOLDER = basedir+'/app/uploads/'
+    ALLOWED_EXTENSIONS = set(['txt', 'csv', 'xml', 'xlsx', 'json'])
+    MAX_FILE_SIZE = 10 * 1024 * 1024 # 10MB
+    DEBUG = False
+    BCRYPT_LOG_ROUNDS = 13
+    WTF_CSRF_ENABLED = True
+    DEBUG_TB_ENABLED = False
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
+
+    @staticmethod
+    def init_app(app):
+        pass
+
+
+class DevelopmentConfig(BaseConfig):
+    """Development configuration"""
+    DEBUG = True
+    BCRYPT_LOG_ROUNDS = 13
+    WTF_CSRF_ENABLED = False
+    DEBUG_TB_ENABLED = True
+
+class TestingConfig(BaseConfig):
+    """Testing configuration"""
+    DEBUG = True
+    TESTING = True
+    BCRYPT_LOG_ROUNDS = 13
+    WTF_CSRF_ENABLED = False
+    DEBUG_TB_ENABLED = False
+
+class ProductionConfig(BaseConfig):
+    """Production configuration"""
+    SECRET_KEY = '{{ secret_key }}'
+    DEBUG = False
+    DEBUG_TB_ENABLED = False
+
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'production': ProductionConfig,
+    'default': DevelopmentConfig
+}

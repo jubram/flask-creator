@@ -1,0 +1,14 @@
+.separator {
+  text-align: center;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  color: grey;
+}
+
+.outer-line {
+  width: 40%;
+  border-bottom: 1px solid grey;
+}

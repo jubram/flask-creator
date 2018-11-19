@@ -1,0 +1,5 @@
+Flask
+Flask-Bootstrap
+pymongo
+Flask-Script
+flask-wtf
